@@ -1,0 +1,37 @@
+name: QuickTeleport
+version: 1.0
+author: S-mallow
+main: me.smallow.quickteleport.QuickTeleport
+api-version: 1.19
+
+commands:
+  quickteleport:
+    description: "QuickTeleport management command"
+    usage: /<command>
+    aliases:
+      - qtp
+
+permissions:
+  quickteleport.*:
+    default: op
+    description: Give players with op everything by default
+    children:
+      quickteleport.add: true
+      quickteleport.remove: true
+      quickteleport.updatename: true
+      quickteleport.updatelocation: true
+  quickteleport.use:
+    default: true
+    description: Allows to use QuickTeleport
+  quickteleport.add:
+    default: false
+    description: Allows to add QuickTeleport locations
+  quickteleport.remove:
+    default: false
+    description: Allows to remove QuickTeleport locations
+  quickteleport.rename:
+    default: false
+    description: Allows to update QuickTeleport names
+  quickteleport.relocate:
+    default: false
+    description: Allows to update QuickTeleport locations
