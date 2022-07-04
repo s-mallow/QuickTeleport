@@ -81,7 +81,7 @@ public class AddCommand extends SubInventoryCommand {
     }
 
     @EventHandler(priority = EventPriority.LOWEST)
-    public void onWarpInventoryClick(InventoryClickEvent event) {
+    public void onAddInventoryClick(InventoryClickEvent event) {
         if(inventoryHolder.equals(event.getInventory().getHolder())) {
             event.setCancelled(true);
             if(!event.getInventory().equals(event.getClickedInventory()) || event.getCurrentItem() == null){
@@ -89,16 +89,14 @@ public class AddCommand extends SubInventoryCommand {
             }
             Bukkit.getScheduler().runTask(plugin, () -> {
                 Player p = (Player) event.getWhoClicked();
-                Warp warp = new Warp(event.getSlot(), addItem.get(p), event.getWhoClicked().getLocation());
+                Warp warp = new Warp(event.getSlot(), addItem.get(p).clone(), event.getWhoClicked().getLocation());
                 try {
                     warpManager.addWarp(warp);
-                    addItem.remove(p);
                 } catch (WarpManager.WarpManagerException e) {
                     p.sendMessage(ChatColor.RED + e.getMessage());
                     return;
                 }
                 p.sendMessage(ChatColor.GREEN + "Warp added.");
-                p.closeInventory();
             });
         }
     }

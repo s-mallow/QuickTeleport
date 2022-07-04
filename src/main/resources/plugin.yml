@@ -15,26 +15,21 @@ permissions:
   quickwarp.*:
     default: op
     description: Give players with op everything by default
-    children:
-      quickwarp.add: true
-      quickwarp.remove: true
-      quickwarp.updatename: true
-      quickwarp.updatelocation: true
   quickwarp.use:
     default: true
     description: Allows to use QuickWarp
   quickwarp.add:
-    default: false
+    default: op
     description: Allows to add QuickWarp locations
   quickwarp.remove:
-    default: false
+    default: op
     description: Allows to remove QuickWarp locations
   quickwarp.rename:
-    default: false
+    default: op
     description: Allows to update QuickWarp names
   quickwarp.relocate:
-    default: false
+    default: op
     description: Allows to update QuickWarp locations
   quickwarp.setitem:
-    default: false
+    default: op
     description: Allows to update QuickWarp items

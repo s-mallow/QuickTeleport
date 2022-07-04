@@ -1,10 +1,7 @@
 package me.smallow.quickwarp.core;
 
 import me.smallow.quickwarp.commands.SubInventoryCommand;
-import org.bukkit.Bukkit;
-import org.bukkit.Material;
 import org.bukkit.configuration.file.YamlConfiguration;
-import org.bukkit.inventory.ItemStack;
 
 import java.io.File;
 import java.io.IOException;
@@ -23,13 +20,6 @@ public class WarpManager {
         this.config = YamlConfiguration.loadConfiguration(configFile);
         this.warps = (List<Warp>) config.getList("warps", new ArrayList<>());
         this.inventoryNotifier = new WarpInventoryNotifier();
-        if(this.warps.isEmpty()){
-            try {
-                addWarp(new Warp(0, new ItemStack(Material.COMPASS), Bukkit.getServer().getWorlds().get(0).getSpawnLocation()));
-            } catch (WarpManagerException e) {
-                e.printStackTrace();
-            }
-        }
     }
 
     public List<Warp> getWarps() {
@@ -45,14 +35,13 @@ public class WarpManager {
         inventoryNotifier.notifyItemChange(warp.slot(), warp.item());
     }
 
-    public void removeWarp(int slot) throws WarpManagerException {
-        Warp warp = new Warp(slot, null, null);
-        if (!warps.contains(warp)) {
-            throw new WarpManagerException("There is no Warp in that slot");
-        }
+    public Warp removeWarp(int slot) throws WarpManagerException {
+        Warp warp = warps.stream().filter(w -> w.slot() == slot).findFirst()
+                .orElseThrow(() -> new WarpManagerException("No Warp exists in that slot"));
         warps.remove(warp);
         setWarpsAndSave();
         inventoryNotifier.notifyItemChange(slot, null);
+        return warp;
     }
 
     private void setWarpsAndSave() throws WarpManagerException {
