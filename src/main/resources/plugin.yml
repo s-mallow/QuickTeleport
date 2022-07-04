@@ -1,37 +1,40 @@
-name: QuickTeleport
+name: QuickWarp
 version: 1.0
 author: S-mallow
-main: me.smallow.quickteleport.QuickTeleport
+main: me.smallow.quickwarp.QuickWarp
 api-version: 1.19
 
 commands:
-  quickteleport:
-    description: "QuickTeleport management command"
+  quickwarp:
+    description: "QuickWarp management command"
     usage: /<command>
     aliases:
-      - qtp
+      - qw
 
 permissions:
-  quickteleport.*:
+  quickwarp.*:
     default: op
     description: Give players with op everything by default
     children:
-      quickteleport.add: true
-      quickteleport.remove: true
-      quickteleport.updatename: true
-      quickteleport.updatelocation: true
-  quickteleport.use:
+      quickwarp.add: true
+      quickwarp.remove: true
+      quickwarp.updatename: true
+      quickwarp.updatelocation: true
+  quickwarp.use:
     default: true
-    description: Allows to use QuickTeleport
-  quickteleport.add:
+    description: Allows to use QuickWarp
+  quickwarp.add:
     default: false
-    description: Allows to add QuickTeleport locations
-  quickteleport.remove:
+    description: Allows to add QuickWarp locations
+  quickwarp.remove:
     default: false
-    description: Allows to remove QuickTeleport locations
-  quickteleport.rename:
+    description: Allows to remove QuickWarp locations
+  quickwarp.rename:
     default: false
-    description: Allows to update QuickTeleport names
-  quickteleport.relocate:
+    description: Allows to update QuickWarp names
+  quickwarp.relocate:
     default: false
-    description: Allows to update QuickTeleport locations
+    description: Allows to update QuickWarp locations
+  quickwarp.setitem:
+    default: false
+    description: Allows to update QuickWarp items
